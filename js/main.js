@@ -23,6 +23,16 @@ if (menuButton && navigation) {
 const year = document.querySelector('[data-current-year]');
 if (year) year.textContent = new Date().getFullYear();
 
+// Use a short, clear navigation label for the integrated appointment section.
+const appointmentLink = document.querySelector('#primary-nav a[href="#partners"]');
+if (appointmentLink) appointmentLink.textContent = 'Appointments';
+
+// Remove the extra child-specific disclaimer from the interest section.
+const interestNote = document.querySelector('.contact .form-note');
+if (interestNote) {
+  interestNote.textContent = 'This is an expression of interest, not an enrollment application.';
+}
+
 // Keep participant-facing site copy gender-inclusive while retaining the existing layout.
 const copy = {
   intro: 'Thetis by Old North is a youth development program that uses soccer, mentorship, and family engagement to help young people build discipline, resilience, confidence, character, and purpose for life.',
@@ -46,7 +56,9 @@ document.querySelectorAll('.principle-card p, .program-copy p').forEach((paragra
 
 const familyEyebrow = document.querySelector('.community-content .eyebrow');
 if (familyEyebrow) {
-  const textNode = Array.from(familyEyebrow.childNodes).find((node) => node.nodeType === Node.TEXT_NODE && node.nodeValue.trim());
+  const textNode = Array.from(familyEyebrow.childNodes).find(
+    (node) => node.nodeType === Node.TEXT_NODE && node.nodeValue.trim()
+  );
   if (textNode) textNode.nodeValue = ` ${copy.familyEyebrow}`;
 }
 
@@ -80,11 +92,15 @@ if (interestForm) {
     const email = document.querySelector('#guardian-email').value.trim();
     const message = document.querySelector('#guardian-message').value.trim();
     const subject = encodeURIComponent('Thetis — Expression of Interest');
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message || 'I would like to learn more about Thetis.'}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message || 'I would like to learn more about Thetis.'}`
+    );
     window.location.href = `mailto:thetisoldnorth@gmail.com?subject=${subject}&body=${body}`;
 
     const status = document.querySelector('#form-status');
-    if (status) status.textContent = 'Your email app should open with a prepared draft. Please send it to complete your inquiry.';
+    if (status) {
+      status.textContent = 'Your email app should open with a prepared draft. Please send it to complete your inquiry.';
+    }
   });
 }
 
@@ -156,7 +172,9 @@ if (partnerForm) {
     ].join('\n'));
 
     const status = document.querySelector('#partner-form-status');
-    if (status) status.textContent = 'Your email app should open with the session request. The slot is not reserved until our team confirms it.';
+    if (status) {
+      status.textContent = 'Your email app should open with the session request. The slot is not reserved until our team confirms it.';
+    }
     window.location.href = `mailto:thetisoldnorth@gmail.com?subject=${subject}&body=${body}`;
   });
 }
