@@ -1,12 +1,14 @@
+// Main site navigation
 const menuButton = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#primary-nav');
 
 if (menuButton && navigation) {
   menuButton.addEventListener('click', () => {
     const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
-    menuButton.setAttribute('aria-expanded', String(!isOpen));
-    menuButton.setAttribute('aria-label', isOpen ? 'Open navigation' : 'Close navigation');
-    navigation.classList.toggle('is-open', !isOpen);
+    const nextState = !isOpen;
+    menuButton.setAttribute('aria-expanded', String(nextState));
+    menuButton.setAttribute('aria-label', nextState ? 'Close navigation' : 'Open navigation');
+    navigation.classList.toggle('is-open', nextState);
   });
 
   navigation.querySelectorAll('a').forEach((link) => {
@@ -21,37 +23,57 @@ if (menuButton && navigation) {
 const year = document.querySelector('[data-current-year]');
 if (year) year.textContent = new Date().getFullYear();
 
-// Keep participant-facing site copy gender-inclusive while retaining exact layout.
-function applyInclusiveCopy() {
-  const replacements = new Map([
-    ['For mothers and guardians', 'For families and guardians'],
-    ['Your son has potential.', 'Every young person has potential.'],
-    ['We help him develop it.', 'We help them develop it.'],
-    [
-      'A mother’s influence. A mentor’s guidance. A young man’s potential.',
-      'A family’s support. A mentor’s guidance. A young person’s potential.'
-    ]
-  ]);
-  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-  let node;
+// Keep participant-facing site copy gender-inclusive while retaining the existing layout.
+const copy = {
+  intro: 'Thetis by Old North is a youth development program that uses soccer, mentorship, and family engagement to help young people build discipline, resilience, confidence, character, and purpose for life.',
+  mentorship: 'Positive relationships help young people reflect, grow, and take responsibility.',
+  familyEyebrow: 'For families and guardians',
+  familyHeading: 'Every young person has potential.|We help them develop it.',
+  motto: 'A family’s support. A mentor’s guidance. A young person’s potential.',
+  faqAudience: 'Thetis is designed for children and families who want to support their growth. Specific age groups and enrollment details will be confirmed before launch.',
+  teamLincoln: 'Zimbabwe-born computer engineer, soccer enthusiast, and mentor focused on helping young people build confidence, discipline, teamwork, and life skills through soccer.',
+  teamMarcus: 'Mechanical engineer with graduate-level study in business analytics and three years of middle-school teaching experience in New York.'
+};
 
-  while ((node = walker.nextNode())) {
-    let text = node.nodeValue;
-    text = text.replace(/\bboys\b/gi, 'children');
-    replacements.forEach((replacement, original) => {
-      text = text.replaceAll(original, replacement);
-    });
-    node.nodeValue = text;
+const introCopy = document.querySelector('.intro .body-large');
+if (introCopy) introCopy.textContent = copy.intro;
+
+document.querySelectorAll('.principle-card p, .program-copy p').forEach((paragraph) => {
+  if (/boys|young men|young man/i.test(paragraph.textContent)) {
+    paragraph.textContent = copy.mentorship;
   }
+});
+
+const familyEyebrow = document.querySelector('.community-content .eyebrow');
+if (familyEyebrow) {
+  const textNode = Array.from(familyEyebrow.childNodes).find((node) => node.nodeType === Node.TEXT_NODE && node.nodeValue.trim());
+  if (textNode) textNode.nodeValue = ` ${copy.familyEyebrow}`;
 }
 
-applyInclusiveCopy();
+const familyHeading = document.querySelector('.community-content h2');
+if (familyHeading) {
+  const [firstLine, secondLine] = copy.familyHeading.split('|');
+  familyHeading.replaceChildren(document.createTextNode(firstLine), document.createElement('br'));
+  const emphasis = document.createElement('em');
+  emphasis.textContent = secondLine;
+  familyHeading.append(emphasis);
+}
 
+const motto = document.querySelector('.motto-quote');
+if (motto) motto.textContent = copy.motto;
+
+const audienceAnswer = document.querySelector('.faq-list details:nth-child(2) p');
+if (audienceAnswer) audienceAnswer.textContent = copy.faqAudience;
+
+const teamBios = document.querySelectorAll('.team-card p');
+if (teamBios[0]) teamBios[0].textContent = copy.teamLincoln;
+if (teamBios[1]) teamBios[1].textContent = copy.teamMarcus;
+
+// Interest form: prepare an email draft without storing or submitting data to a server.
 const interestForm = document.querySelector('#interest-form');
 if (interestForm) {
   interestForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    const status = document.querySelector('#form-status');
     if (!interestForm.reportValidity()) return;
 
     const name = document.querySelector('#guardian-name').value.trim();
@@ -60,95 +82,81 @@ if (interestForm) {
     const subject = encodeURIComponent('Thetis — Expression of Interest');
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message || 'I would like to learn more about Thetis.'}`);
     window.location.href = `mailto:thetisoldnorth@gmail.com?subject=${subject}&body=${body}`;
-    if (status) {
-      status.textContent = 'Your email app should open with a prepared draft. Please send it to complete your inquiry.';
-    }
+
+    const status = document.querySelector('#form-status');
+    if (status) status.textContent = 'Your email app should open with a prepared draft. Please send it to complete your inquiry.';
   });
 }
 
+// Partner session request: ask for an address only for home or other-field selections.
 const partnerForm = document.querySelector('#partner-booking-form');
 const partnerLocation = document.querySelector('#session-location');
-const partnerLocationField = document.querySelector('#location-details-field');
-const partnerLocationDetail = document.querySelector('#location-details');
-const partnerDate = document.querySelector('#session-date');
+const locationDetailsField = document.querySelector('#location-details-field');
+const locationDetails = document.querySelector('#location-details');
+const sessionDate = document.querySelector('#session-date');
 
-// Partner-preferred slots are requests; prevent past dates and confirm manually.
-if (partnerDate) {
+if (sessionDate) {
   const today = new Date();
   today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
-  partnerDate.min = today.toISOString().slice(0, 10);
+  sessionDate.min = today.toISOString().slice(0, 10);
 }
 
-if (partnerLocation && partnerLocationField && partnerLocationDetail) {
-  const fieldChoice = partnerLocation.querySelector('option[value="Field of choice"]');
-  if (fieldChoice) {
-    fieldChoice.value = 'Other field';
-    fieldChoice.textContent = 'Other field';
+if (partnerLocation && locationDetailsField && locationDetails) {
+  const otherFieldOption = partnerLocation.querySelector('option[value="Field of choice"]');
+  if (otherFieldOption) {
+    otherFieldOption.value = 'Other field';
+    otherFieldOption.textContent = 'Other field';
   }
 
-  const locationDetailsLabel = partnerLocationField.querySelector('label[for="location-details"]');
-  const updateLocationRequirement = () => {
-    const isHome = partnerLocation.value === 'Partner’s home';
+  const locationLabel = locationDetailsField.querySelector('label[for="location-details"]');
+  const updateLocationPrompt = () => {
     const isOtherField = partnerLocation.value === 'Other field';
-    const needsDetail = isHome || isOtherField;
+    const isHome = partnerLocation.value === 'Partner’s home';
+    const requiresDetails = isOtherField || isHome;
 
-    partnerLocationField.hidden = !needsDetail;
-    partnerLocationDetail.required = needsDetail;
-    partnerLocationDetail.autocomplete = isHome ? 'street-address' : 'off';
+    locationDetailsField.hidden = !requiresDetails;
+    locationDetails.required = requiresDetails;
+    locationDetails.autocomplete = isHome ? 'street-address' : 'off';
+    locationDetails.placeholder = isOtherField ? 'Enter the full field address' : 'Enter the session address';
 
-    if (locationDetailsLabel) {
-      locationDetailsLabel.textContent = isOtherField
-        ? 'Address of the other field *'
-        : 'Partner home address *';
+    if (locationLabel) {
+      locationLabel.textContent = isOtherField ? 'Other field address *' : 'Partner home address *';
     }
-    partnerLocationDetail.placeholder = isOtherField
-      ? 'Enter the full address of the field'
-      : 'Enter the session address';
   };
 
-  partnerLocation.addEventListener('change', updateLocationRequirement);
-  updateLocationRequirement();
+  partnerLocation.addEventListener('change', updateLocationPrompt);
+  updateLocationPrompt();
 }
 
 if (partnerForm) {
   partnerForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    const status = document.querySelector('#partner-form-status');
     if (!partnerForm.reportValidity()) return;
 
-    const formData = new FormData(partnerForm);
-    const locationValue = formData.get('location');
-    const detailValue = formData.get('locationDetails')?.toString().trim();
-    const location = detailValue && (locationValue === 'Partner’s home' || locationValue === 'Other field')
-      ? `${locationValue} — ${detailValue}`
-      : locationValue;
-
-    const name = formData.get('name')?.toString().trim();
-    const email = formData.get('email')?.toString().trim();
-    const sessionType = formData.get('sessionType')?.toString();
-    const sessionDate = formData.get('date')?.toString();
-    const sessionTime = formData.get('time')?.toString();
-    const notes = formData.get('notes')?.toString().trim() || 'None provided';
+    const data = new FormData(partnerForm);
+    const selectedLocation = data.get('location');
+    const locationAddress = data.get('locationDetails')?.toString().trim();
+    const location = locationAddress && (selectedLocation === 'Other field' || selectedLocation === 'Partner’s home')
+      ? `${selectedLocation}: ${locationAddress}`
+      : selectedLocation;
 
     const subject = encodeURIComponent('Thetis partner session request');
     const body = encodeURIComponent([
       'Partner session request',
       '',
-      `Parent or guardian: ${name}`,
-      `Email: ${email}`,
-      `Session type: ${sessionType}`,
-      `Preferred date: ${sessionDate}`,
-      `Preferred time: ${sessionTime}`,
+      `Parent or guardian: ${data.get('name')}`,
+      `Email: ${data.get('email')}`,
+      `Session type: ${data.get('sessionType')}`,
+      `Preferred date: ${data.get('date')}`,
+      `Preferred time: ${data.get('time')}`,
       `Preferred location: ${location}`,
-      `Additional notes: ${notes}`,
+      `Additional notes: ${data.get('notes')?.toString().trim() || 'None provided'}`,
       '',
-      'Please reply to confirm availability or suggest an alternative date or time.'
+      'Please reply to confirm availability or suggest another date or time.'
     ].join('\n'));
 
-    if (status) {
-      status.textContent = 'Your email app should open with the session request. The slot is not reserved until we confirm it.';
-    }
-
+    const status = document.querySelector('#partner-form-status');
+    if (status) status.textContent = 'Your email app should open with the session request. The slot is not reserved until our team confirms it.';
     window.location.href = `mailto:thetisoldnorth@gmail.com?subject=${subject}&body=${body}`;
   });
 }
