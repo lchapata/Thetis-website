@@ -45,4 +45,4 @@ The site is static and can be deployed on GitHub Pages or another static hosting
 
 ## Contact
 
-Interest and partner session forms open an email draft to `thetisoldnorth@gmail.com`. They do not submit information to a server or store it.
+The homepage contact section links to email, Instagram, and phone numbers. Interest and partner session forms open an email draft to `thetisoldnorth@gmail.com`; they do not submit information to a server or store it.
