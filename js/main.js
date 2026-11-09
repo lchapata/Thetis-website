@@ -26,6 +26,29 @@ function initializeMobileNavigation() {
   });
 }
 
+function initializeInclusiveLanguage() {
+  const replacements = new Map([
+    ['boys', 'young people'],
+    ['Your son has potential.', 'Every young person has potential.'],
+    ['We help him develop it.', 'We help them develop it.'],
+    ['For mothers and guardians', 'For families and guardians'],
+    [
+      'A mother’s influence. A mentor’s guidance. A young man’s potential.',
+      'A family’s support. A mentor’s guidance. A young person’s potential.'
+    ]
+  ]);
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  let textNode;
+
+  while ((textNode = walker.nextNode())) {
+    let text = textNode.nodeValue;
+    replacements.forEach((replacement, original) => {
+      text = text.replaceAll(original, replacement);
+    });
+    textNode.nodeValue = text;
+  }
+}
+
 function initializeCurrentYear() {
   const year = document.querySelector('[data-current-year]');
   if (year) year.textContent = new Date().getFullYear();
@@ -57,6 +80,7 @@ function initializeInterestForm() {
   });
 }
 
+initializeInclusiveLanguage();
 initializeMobileNavigation();
 initializeCurrentYear();
 initializeInterestForm();
