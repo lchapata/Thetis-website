@@ -52,6 +52,38 @@ select {
   font-family: var(--sans);
 }
 
+/* Keep the reference palette: navy/teal dark sections and warm cream content.
+   Gold is reserved for accents and calls to action, never full section backgrounds. */
+.principles.section-green {
+  background: #07131d;
+  color: #f8f8f5;
+}
+
+.contact.section-gold {
+  background: #07131d;
+  color: #f8f8f5;
+}
+
+.contact .eyebrow-dark {
+  color: #e2b64f;
+}
+
+.contact h2 {
+  color: #f8f8f5;
+}
+
+.contact-copy,
+.contact .form-note {
+  color: #d7e2e4;
+}
+
+.contact .interest-panel {
+  padding: clamp(28px, 3vw, 64px);
+  border-radius: 20px;
+  background: #f3f1e9;
+  color: #10251d;
+}
+
 .partner-booking {
   display: grid;
   width: min(calc(100% - 12%), 2200px);
@@ -73,9 +105,9 @@ select {
 
 .partner-booking__intro h2 {
   margin: 0 0 24px;
+  color: var(--paper);
   font-size: clamp(42px, 4vw, 92px);
   line-height: 0.96;
-  color: var(--paper);
 }
 
 .partner-booking__intro h2 em {
@@ -125,22 +157,22 @@ select {
 .partner-form-panel {
   padding: clamp(26px, 3vw, 58px);
   border-radius: 18px;
-  background: var(--paper);
-  color: var(--ink);
+  background: #f3f1e9;
+  color: #10251d;
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.18);
 }
 
 .partner-form-panel h3 {
   margin: 0 0 24px;
+  color: #10251d;
   font-size: clamp(30px, 2.6vw, 52px);
-  color: var(--ink);
 }
 
 .partner-field {
   display: grid;
   gap: 9px;
   margin: 0 0 22px;
-  color: var(--ink);
+  color: #10251d;
 }
 
 .partner-field label,
@@ -157,7 +189,7 @@ select {
   border: 1px solid rgba(7, 19, 29, 0.18);
   border-radius: 9px;
   background: #fff;
-  color: var(--ink);
+  color: #10251d;
   font: inherit;
 }
 
@@ -204,7 +236,7 @@ select {
 .partner-choice small,
 .partner-field small,
 .partner-form-disclosure {
-  color: var(--muted);
+  color: #647276;
   font-size: 13px;
 }
 
@@ -215,7 +247,7 @@ select {
 }
 
 .partner-optional {
-  color: var(--muted);
+  color: #647276;
   font-weight: 500;
 }
 
@@ -260,7 +292,8 @@ select {
     gap: 0;
   }
 
-  .partner-form-panel {
+  .partner-form-panel,
+  .contact .interest-panel {
     padding: 22px 18px;
     border-radius: 14px;
   }
