@@ -6,18 +6,24 @@ A responsive, static website for Thetis, a North Carolina youth soccer developme
 
 ```text
 .
-├── index.html             # Site content and page structure
+├── index.html               # Main site content and page structure
+├── partners.html            # Existing-partner session request page
 ├── css/
-│   └── styles.css         # Responsive layout, colors, and typography
+│   ├── styles.css           # Main site design system
+│   └── partner-scheduling.css # Partner booking page styles
 ├── js/
-│   └── main.js            # Mobile navigation and dynamic copyright year
-├── official-logo.png      # Brand logo
-├── preview-*.jpg          # Site photography
-├── team-*.png             # Team photography
-└── README.md              # Project notes and preview instructions
+│   ├── main.js              # Main site navigation and form behavior
+│   └── partner-scheduling.js # Session request interactions
+├── official-logo.png        # Brand logo
+├── preview-*.jpg            # Site photography
+└── team-*.png               # Team photography
 ```
 
-The existing image files remain at the repository root and are referenced by the page and stylesheet.
+## Partner session requests
+
+Existing partners can visit `partners.html` to request a one-on-one or group practice session. They can provide a preferred date, time, and location: Fred Fletcher Park (820 Clay St, Raleigh, NC 27605), their home, or a field of their choice.
+
+The static page prepares an email request to `thetisoldnorth@gmail.com`; it does not check live availability or reserve a slot. The Thetis team must confirm the appointment by email. A backend calendar/booking integration would be needed to display real-time availability and prevent conflicts.
 
 ## Preview locally
 
@@ -27,7 +33,7 @@ Open `index.html` in a browser, or serve the project directory with any static f
 python3 -m http.server 8000
 ```
 
-Then visit `http://localhost:8000`.
+Then visit `http://localhost:8000` and `http://localhost:8000/partners.html`.
 
 ## Publish
 
@@ -35,7 +41,4 @@ The site is static and can be deployed on GitHub Pages or another static hosting
 
 ## Contact
 
-The contact link opens an email to `thetisoldnorth@gmail.com`. It does not submit data to a server or store visitor information.
-
-
-This repo keeps the same visual design and content while organizing the styling and JavaScript into clearer sections for easier maintenance.
+Interest and partner session forms open an email draft to `thetisoldnorth@gmail.com`. They do not submit information to a server or store it.

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07131d">
+  <meta name="description" content="Schedule a Thetis training session as an existing partner. Choose a preferred date, time, session type, and location.">
+  <title>Partner Training | Thetis by Old North</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/partner-scheduling.css">
+  <script src="js/partner-scheduling.js" defer></script>
+</head>
+<body class="partner-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="Thetis by Old North home">
+        <img src="official-logo.png" alt="Thetis crest and wordmark" width="150" height="120">
+      </a>
+      <a class="partner-home-link" href="index.html">Main site <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="partner-booking">
+      <div class="partner-booking__intro">
+        <p class="eyebrow">For current partners</p>
+        <h1>Let’s find a time<br>that works for <em>you.</em></h1>
+        <p>Request a training session that fits your family’s schedule and location. Choose one-on-one practice or a group session, then share a preferred date and time.</p>
+        <div class="partner-booking__note">
+          <span class="partner-booking__note-mark" aria-hidden="true">T</span>
+          <p><strong>Your preferred slot is a request, not a confirmed booking.</strong><br>Our team will follow up by email to confirm availability and finalize the session.</p>
+        </div>
+      </div>
+
+      <section class="partner-form-panel" aria-labelledby="partner-form-title">
+        <h2 id="partner-form-title">Request a session</h2>
+        <form id="partner-booking-form">
+          <div class="partner-field">
+            <label for="partner-name">Parent or guardian name <span aria-hidden="true">*</span></label>
+            <input id="partner-name" name="name" autocomplete="name" maxlength="100" placeholder="Your name" required>
+          </div>
+
+          <div class="partner-field">
+            <label for="partner-email">Email address <span aria-hidden="true">*</span></label>
+            <input id="partner-email" name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com" required>
+          </div>
+
+          <fieldset class="partner-field partner-fieldset">
+            <legend>Session type <span aria-hidden="true">*</span></legend>
+            <label class="partner-choice"><input type="radio" name="sessionType" value="One-on-one practice" required><span><strong>One-on-one</strong><small>Individual coaching and practice</small></span></label>
+            <label class="partner-choice"><input type="radio" name="sessionType" value="Group session"><span><strong>Group session</strong><small>Practice with a group of participants</small></span></label>
+          </fieldset>
+
+          <div class="partner-schedule-fields">
+            <div class="partner-field">
+              <label for="session-date">Preferred date <span aria-hidden="true">*</span></label>
+              <input id="session-date" name="date" type="date" required>
+            </div>
+            <div class="partner-field">
+              <label for="session-time">Preferred time <span aria-hidden="true">*</span></label>
+              <select id="session-time" name="time" required>
+                <option value="">Choose a time</option>
+                <option>8:00 AM</option>
+                <option>9:30 AM</option>
+                <option>11:00 AM</option>
+                <option>12:30 PM</option>
+                <option>2:00 PM</option>
+                <option>3:30 PM</option>
+                <option>5:00 PM</option>
+                <option>6:30 PM</option>
+              </select>
+            </div>
+          </div>
+          <p class="partner-field-hint">Select your preferred date and time. The team will confirm the slot or offer alternatives.</p>
+
+          <div class="partner-field">
+            <label for="session-location">Preferred location <span aria-hidden="true">*</span></label>
+            <select id="session-location" name="location" required>
+              <option value="">Choose a location</option>
+              <option value="Fred Fletcher Park, 820 Clay St, Raleigh, NC 27605">Fred Fletcher Park — 820 Clay St, Raleigh, NC 27605</option>
+              <option value="Partner’s home">Partner’s home</option>
+              <option value="Field of choice">Field of choice</option>
+            </select>
+          </div>
+
+          <div class="partner-field" id="location-details-field" hidden>
+            <label for="location-details">Preferred address or field name <span aria-hidden="true">*</span></label>
+            <input id="location-details" name="locationDetails" maxlength="200" autocomplete="street-address" placeholder="Enter the address or field name">
+            <small>Only share the location details needed to coordinate your session.</small>
+          </div>
+
+          <div class="partner-field">
+            <label for="session-notes">Anything else we should know? <span class="partner-optional">(optional)</span></label>
+            <textarea id="session-notes" name="notes" rows="4" maxlength="1000" placeholder="Share scheduling preferences or other coordination notes. Please do not include sensitive information about children."></textarea>
+          </div>
+
+          <button class="button button-gold partner-submit" type="submit">Prepare session request <span aria-hidden="true">→</span></button>
+          <p id="partner-form-status" class="partner-form-status" role="status" aria-live="polite"></p>
+          <p class="partner-form-disclosure">This page prepares an email request; it does not reserve a slot or store information. Your session is scheduled only after the Thetis team confirms it with you.</p>
+        </form>
+      </section>
+    </section>
+  </main>
+
+  <footer class="partner-footer">
+    <div class="container"><a href="index.html">← Back to Thetis by Old North</a><p>More than a game. A brighter generation.</p></div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,138 @@
+/* Partner session request page; visual language follows the main Thetis site. */
+.partner-page {
+  min-height: 100vh;
+  background: #07131d;
+  color: #f8f8f5;
+  font-family: 'Manrope', 'Segoe UI', sans-serif;
+}
+
+.partner-page .site-header { background: #06111b; }
+.partner-page .nav-wrap { min-height: clamp(88px, 6vw, 164px); }
+.partner-home-link {
+  color: #f8f8f5;
+  font-weight: 700;
+  text-decoration: none;
+}
+.partner-home-link span { color: #e2b64f; margin-left: .4rem; }
+
+.partner-booking {
+  display: grid;
+  width: min(calc(100% - 12%), 2200px);
+  grid-template-columns: minmax(0, 1fr) minmax(440px, .95fr);
+  align-items: start;
+  gap: clamp(48px, 7vw, 150px);
+  margin: clamp(55px, 7vw, 150px) auto;
+}
+.partner-booking__intro { position: sticky; top: 190px; padding-top: 12px; }
+.partner-booking__intro .eyebrow { color: #e2b64f; }
+.partner-booking__intro h1 {
+  margin: 0 0 32px;
+  color: #f8f8f5;
+  font-family: 'Sora', 'Manrope', sans-serif;
+  font-size: clamp(48px, 5vw, 112px);
+  font-weight: 700;
+  letter-spacing: -.055em;
+  line-height: 1.02;
+}
+.partner-booking__intro h1 em { color: #edc663; font-style: normal; }
+.partner-booking__intro > p:not(.eyebrow) {
+  max-width: 760px;
+  color: #d7e2e4;
+  font-size: clamp(17px, 1.4vw, 28px);
+  line-height: 1.75;
+}
+.partner-booking__note {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  max-width: 700px;
+  margin-top: 46px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(226,182,79,.32);
+  color: #d7e2e4;
+}
+.partner-booking__note-mark {
+  display: grid;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid #e2b64f;
+  border-radius: 50%;
+  color: #edc663;
+  font-family: 'Sora', sans-serif;
+}
+.partner-booking__note p { margin: 0; line-height: 1.65; }
+.partner-booking__note strong { color: #f8f8f5; }
+
+.partner-form-panel {
+  padding: clamp(28px, 3vw, 64px);
+  border-radius: 22px;
+  background: #f3f1e9;
+  color: #10251d;
+  box-shadow: 0 24px 70px rgba(0,0,0,.18);
+}
+.partner-form-panel h2 {
+  margin: 0 0 32px;
+  color: #10251d;
+  font-family: 'Sora', 'Manrope', sans-serif;
+  font-size: clamp(30px, 2.5vw, 54px);
+  font-weight: 700;
+  letter-spacing: -.04em;
+}
+.partner-field { display: grid; gap: 9px; margin: 0 0 22px; }
+.partner-field label, .partner-field legend { font-weight: 800; }
+.partner-field input:not([type='radio']),
+.partner-field select,
+.partner-field textarea {
+  width: 100%;
+  min-height: 58px;
+  padding: 14px 16px;
+  border: 1px solid #aeb9b5;
+  border-radius: 9px;
+  background: #fff;
+  color: #10251d;
+  font: inherit;
+}
+.partner-field textarea { min-height: 125px; resize: vertical; }
+.partner-field input::placeholder, .partner-field textarea::placeholder { color: #777; }
+.partner-field :focus-visible { outline: 3px solid #0c6460; outline-offset: 2px; }
+.partner-fieldset { min-width: 0; padding: 0; border: 0; }
+.partner-fieldset legend { margin-bottom: 10px; }
+.partner-choice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 10px;
+  padding: 15px;
+  border: 1px solid #d5d9d4;
+  border-radius: 9px;
+  background: rgba(255,255,255,.62);
+  cursor: pointer;
+}
+.partner-choice input { width: 18px; height: 18px; margin: 3px 0 0; accent-color: #0c6460; }
+.partner-choice span { display: grid; gap: 2px; }
+.partner-choice small, .partner-field small, .partner-field-hint { color: #647276; font-size: 13px; }
+.partner-schedule-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.partner-field-hint { margin: -12px 0 22px; }
+.partner-optional { color: #647276; font-weight: 500; }
+.partner-submit { min-height: 58px; border: 0; cursor: pointer; font-family: inherit; font-weight: 800; }
+.partner-form-status { margin: 14px 0 0; font-weight: 700; }
+.partner-form-status:empty { display: none; }
+.partner-form-disclosure { margin: 16px 0 0; color: #647276; font-size: 12px; line-height: 1.6; }
+.partner-footer { padding: 22px 0; border-top: 1px solid rgba(255,255,255,.12); color: #d7e2e4; }
+.partner-footer .container { display: flex; justify-content: space-between; gap: 20px; }
+.partner-footer a { color: #edc663; text-decoration: none; }
+.partner-footer p { margin: 0; }
+
+@media (max-width: 900px) {
+  .partner-booking { width: min(calc(100% - 48px), 720px); grid-template-columns: 1fr; gap: 35px; margin-block: 55px; }
+  .partner-booking__intro { position: static; }
+}
+@media (max-width: 600px) {
+  .partner-booking { width: min(calc(100% - 36px), 520px); margin-block: 35px; }
+  .partner-booking__intro h1 { font-size: clamp(43px, 12vw, 64px); }
+  .partner-form-panel { padding: 24px 19px; border-radius: 15px; }
+  .partner-schedule-fields { grid-template-columns: 1fr; gap: 0; }
+  .partner-footer .container { flex-direction: column; }
+}
