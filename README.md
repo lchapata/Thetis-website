@@ -13,7 +13,8 @@ A responsive, static website for Thetis, a North Carolina youth soccer developme
 │   └── main.js            # Mobile navigation and dynamic copyright year
 ├── official-logo.png      # Brand logo
 ├── preview-*.jpg          # Site photography
-└── team-*.png             # Team photography
+├── team-*.png             # Team photography
+└── README.md              # Project notes and preview instructions
 ```
 
 The existing image files remain at the repository root and are referenced by the page and stylesheet.
@@ -35,3 +36,6 @@ The site is static and can be deployed on GitHub Pages or another static hosting
 ## Contact
 
 The contact link opens an email to `thetisoldnorth@gmail.com`. It does not submit data to a server or store visitor information.
+
+
+This repo keeps the same visual design and content while organizing the styling and JavaScript into clearer sections for easier maintenance.
