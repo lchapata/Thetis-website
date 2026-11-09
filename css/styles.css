@@ -261,6 +261,13 @@ select,
 }
 .team-note { display: none; }
 
+/* A taller frame keeps the girl and the ball in view in the program photos. */
+.program-image {
+  height: auto;
+  aspect-ratio: 4 / 3;
+}
+.program-image-one img { object-position: center top; }
+
 /* Show the full portrait so the training cones above each player's head remain visible. */
 .intro-aside .aside-image {
   height: auto;
