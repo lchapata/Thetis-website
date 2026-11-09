@@ -261,6 +261,18 @@ select,
 }
 .team-note { display: none; }
 
+/* Show the full portrait so the training cones above each player's head remain visible. */
+.intro-aside .aside-image {
+  height: auto;
+  overflow: visible;
+}
+.intro-aside .aside-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
 /* The contact section in the reference uses a navy canvas with a cream form card. */
 .contact.section-gold {
   background: #07131d;
@@ -302,6 +314,8 @@ select,
 }
 
 @media (max-width: 680px) {
+  .intro-aside { grid-template-columns: 1fr; }
+  .intro-aside .aside-image { max-width: 380px; margin-inline: auto; }
   .team-section > .container > .section-label { margin-bottom: 24px; }
   .team-heading { margin-bottom: 30px; }
   .team-heading h2 { font-size: clamp(38px, 10vw, 56px); }

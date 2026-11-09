@@ -81,14 +81,6 @@ const teamBios = document.querySelectorAll('.team-card p');
 if (teamBios[0]) teamBios[0].textContent = copy.teamLincoln;
 if (teamBios[1]) teamBios[1].textContent = copy.teamMarcus;
 
-// Put the mentor-with-children photo in the What is Thetis? feature, replacing the suit portrait.
-// Setting src on the existing image keeps the current layout and dimensions unchanged.
-const introFeatureImage = document.querySelector('.intro-aside .aside-image img');
-if (introFeatureImage) {
-  introFeatureImage.src = '5434E717-5FAA-4566-99D4-2CFF8576CC07.jpg';
-  introFeatureImage.alt = 'Lincoln with two young players wearing training cones during a playful soccer activity';
-}
-
 // Keep the separate family/community image as it was before the mistaken replacement.
 const communityImage = document.querySelector('.community-image img');
 if (communityImage) {
