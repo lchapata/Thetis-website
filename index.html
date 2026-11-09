@@ -25,6 +25,7 @@
         <a href="#approach">Our approach</a>
         <a href="#families">For families</a>
         <a href="#team">Our team</a>
+        <a href="#partners">Partner schedule</a>
         <a class="nav-cta" href="#contact">Express interest <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
@@ -124,8 +125,8 @@
           <h3>Express interest</h3>
           <form id="interest-form" novalidate>
             <div class="field"><label for="guardian-name">Your name <span aria-hidden="true">*</span></label><input autocomplete="name" id="guardian-name" name="name" maxlength="100" placeholder="Parent or guardian name" required></div>
-            <div class="field"><label for="guardian-email">Email address <span aria-hidden="true">*</span></label><input autocomplete="email" id="guardian-email" name="email" type="email" maxlength="150" placeholder="you@example.com" required></div>
-            <div class="field"><label for="guardian-message">What would you like to know? <span class="optional">(optional)</span></label><textarea id="guardian-message" name="message" maxlength="700" rows="4" placeholder="Tell us what interests you about Thetis. Please avoid personal details about minors."></textarea></div>
+            <div class="field"><label for="guardian-email">Email address <span aria-hidden="true">*</span></label><input autocomplete="email" id="guardian-email" name="email" type="email" maxlength="254" placeholder="you@example.com" required></div>
+            <div class="field"><label for="guardian-message">What would you like to know? <span class="optional">(optional)</span></label><textarea id="guardian-message" name="message" maxlength="1000" placeholder="Tell us what interests you about Thetis. Please avoid personal details about minors."></textarea></div>
             <button class="button button-gold" type="submit">Prepare interest email <span aria-hidden="true">↗</span></button>
             <p aria-live="polite" id="form-status" role="status"></p>
             <p class="form-disclosure">This prototype opens an email draft in your email app. It does not submit or store your information. You must send the prepared email to complete your inquiry.</p>
@@ -133,8 +134,87 @@
         </div>
       </div>
     </section>
+
+    <section class="partner-booking section-dark" id="partners">
+      <div class="partner-booking__intro">
+        <p class="eyebrow"><span class="eyebrow-line"></span> For current partners</p>
+        <h2>Plan a session that fits <em>your schedule.</em></h2>
+        <p>Request a training session for one-on-one work or a group session. Choose a preferred date, time, and location that works best for your family.</p>
+        <div class="partner-booking__note">
+          <span class="partner-booking__note-mark" aria-hidden="true">T</span>
+          <p><strong>Your preferred slot is a request, not a confirmed booking.</strong><br>Our team will follow up by email to confirm availability and finalize the session.</p>
+        </div>
+      </div>
+
+      <div class="partner-form-panel" aria-labelledby="partner-form-title">
+        <h3 id="partner-form-title">Book a session</h3>
+        <form id="partner-booking-form" novalidate>
+          <div class="partner-field">
+            <label for="partner-name">Parent or guardian name <span aria-hidden="true">*</span></label>
+            <input id="partner-name" name="name" autocomplete="name" maxlength="100" placeholder="Your name" required>
+          </div>
+
+          <div class="partner-field">
+            <label for="partner-email">Email address <span aria-hidden="true">*</span></label>
+            <input id="partner-email" name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com" required>
+          </div>
+
+          <fieldset class="partner-field partner-fieldset">
+            <legend>Session type <span aria-hidden="true">*</span></legend>
+            <label class="partner-choice"><input type="radio" name="sessionType" value="One-on-one practice" required><span><strong>One-on-one</strong><small>Individual coaching and practice</small></span></label>
+            <label class="partner-choice"><input type="radio" name="sessionType" value="Group session"><span><strong>Group session</strong><small>Practice with a group of participants</small></span></label>
+          </fieldset>
+
+          <div class="partner-schedule-fields">
+            <div class="partner-field">
+              <label for="session-date">Preferred date <span aria-hidden="true">*</span></label>
+              <input id="session-date" name="date" type="date" required>
+            </div>
+            <div class="partner-field">
+              <label for="session-time">Preferred time <span aria-hidden="true">*</span></label>
+              <select id="session-time" name="time" required>
+                <option value="">Choose a time</option>
+                <option>8:00 AM</option>
+                <option>9:30 AM</option>
+                <option>11:00 AM</option>
+                <option>12:30 PM</option>
+                <option>2:00 PM</option>
+                <option>3:30 PM</option>
+                <option>5:00 PM</option>
+                <option>6:30 PM</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="partner-field">
+            <label for="session-location">Preferred location <span aria-hidden="true">*</span></label>
+            <select id="session-location" name="location" required>
+              <option value="">Choose a location</option>
+              <option value="Fred Fletcher Park, 820 Clay St, Raleigh, NC 27605">Fred Fletcher Park — 820 Clay St, Raleigh, NC 27605</option>
+              <option value="Partner’s home">Partner’s home</option>
+              <option value="Field of choice">Field of choice</option>
+            </select>
+          </div>
+
+          <div class="partner-field" id="location-details-field" hidden>
+            <label for="location-details">Preferred address or field name <span aria-hidden="true">*</span></label>
+            <input id="location-details" name="locationDetails" maxlength="200" autocomplete="street-address" placeholder="Enter the address or field name">
+            <small>Only share the location details needed to coordinate your session.</small>
+          </div>
+
+          <div class="partner-field">
+            <label for="session-notes">Anything else we should know? <span class="partner-optional">(optional)</span></label>
+            <textarea id="session-notes" name="notes" rows="4" maxlength="1000" placeholder="Share scheduling preferences or other coordination notes. Please do not include sensitive information about children."></textarea>
+          </div>
+
+          <button class="button button-gold partner-submit" type="submit">Prepare session request <span aria-hidden="true">→</span></button>
+          <p id="partner-form-status" class="partner-form-status" role="status" aria-live="polite"></p>
+          <p class="partner-form-disclosure">This page prepares an email request. It does not reserve a slot or store information. Your session is scheduled only after the Thetis team confirms it with you.</p>
+        </form>
+      </div>
+    </section>
   </main>
 
-  <footer class="site-footer section-dark"><div class="container footer-main"><a class="footer-brand" href="#top"><img src="official-logo.png" alt="Thetis by Old North" width="160" height="58"></a><p>Soccer. Mentorship. Family.</p><p>North Carolina · <span data-current-year></span> · Thetis by Old North</p></div></footer>
+  <footer class="site-footer section-dark"><div class="container footer-main"><a class="footer-brand" href="#top"><img src="official-logo.png" alt="Thetis by Old North" width="160" height="58"></a><p>© <span data-current-year></span> Thetis by Old North.</p><p><a href="#contact">Express interest</a> · <a href="#partners">Partner schedule</a></p></div></footer>
 </body>
 </html>

@@ -20,7 +20,9 @@
 .motto h2,
 .faq-inner h2,
 .contact h2,
-.interest-panel h3 {
+.interest-panel h3,
+.partner-booking__intro h2,
+.partner-form-panel h3 {
   font-family: var(--serif);
   font-weight: 700;
   letter-spacing: -0.045em;
@@ -42,6 +44,224 @@ select {
 .field textarea,
 .contact-copy,
 .form-note,
-.form-disclosure {
+.form-disclosure,
+.partner-field,
+.partner-choice,
+.partner-form-disclosure,
+.partner-form-status {
   font-family: var(--sans);
+}
+
+.partner-booking {
+  display: grid;
+  width: min(calc(100% - 12%), 2200px);
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 0.95fr);
+  align-items: start;
+  gap: clamp(48px, 7vw, 140px);
+  margin: 0 auto;
+  padding: clamp(72px, 8vw, 140px) 0;
+}
+
+.partner-booking__intro {
+  position: relative;
+  padding-top: 12px;
+}
+
+.partner-booking__intro .eyebrow {
+  color: var(--gold);
+}
+
+.partner-booking__intro h2 {
+  margin: 0 0 24px;
+  font-size: clamp(42px, 4vw, 92px);
+  line-height: 0.96;
+  color: var(--paper);
+}
+
+.partner-booking__intro h2 em {
+  color: var(--gold-light);
+  font-style: normal;
+}
+
+.partner-booking__intro > p:not(.eyebrow) {
+  max-width: 720px;
+  color: rgba(251, 249, 244, 0.84);
+  font-size: clamp(17px, 1.6vw, 28px);
+  line-height: 1.7;
+}
+
+.partner-booking__note {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  max-width: 700px;
+  margin-top: 42px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(226, 182, 79, 0.32);
+}
+
+.partner-booking__note-mark {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  color: var(--gold-light);
+  font-family: var(--serif);
+  font-weight: 700;
+}
+
+.partner-booking__note p {
+  margin: 0;
+  color: rgba(251, 249, 244, 0.82);
+  line-height: 1.65;
+}
+
+.partner-booking__note strong {
+  color: var(--paper);
+}
+
+.partner-form-panel {
+  padding: clamp(26px, 3vw, 58px);
+  border-radius: 18px;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.18);
+}
+
+.partner-form-panel h3 {
+  margin: 0 0 24px;
+  font-size: clamp(30px, 2.6vw, 52px);
+  color: var(--ink);
+}
+
+.partner-field {
+  display: grid;
+  gap: 9px;
+  margin: 0 0 22px;
+  color: var(--ink);
+}
+
+.partner-field label,
+.partner-field legend {
+  font-weight: 700;
+}
+
+.partner-field input,
+.partner-field select,
+.partner-field textarea {
+  width: 100%;
+  min-height: 58px;
+  padding: 14px 16px;
+  border: 1px solid rgba(7, 19, 29, 0.18);
+  border-radius: 9px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+}
+
+.partner-field textarea {
+  min-height: 124px;
+  resize: vertical;
+}
+
+.partner-field input::placeholder,
+.partner-field textarea::placeholder {
+  color: #7a7f7d;
+}
+
+.partner-fieldset {
+  margin: 0 0 18px;
+  padding: 0;
+  border: 0;
+}
+
+.partner-choice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 10px;
+  padding: 14px 15px;
+  border: 1px solid rgba(7, 19, 29, 0.14);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+}
+
+.partner-choice input {
+  width: 18px;
+  height: 18px;
+  margin: 4px 0 0;
+  accent-color: #0c6460;
+}
+
+.partner-choice span {
+  display: grid;
+  gap: 2px;
+}
+
+.partner-choice small,
+.partner-field small,
+.partner-form-disclosure {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.partner-schedule-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.partner-optional {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.partner-submit {
+  min-height: 58px;
+  border: none;
+  cursor: pointer;
+}
+
+.partner-form-status {
+  margin: 14px 0 0;
+  font-weight: 700;
+}
+
+.partner-form-status:empty { display: none; }
+
+.partner-form-disclosure {
+  margin: 16px 0 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .partner-booking {
+    width: min(calc(100% - 48px), 760px);
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 60px 0 80px;
+  }
+
+  .partner-booking__intro {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 680px) {
+  .partner-booking {
+    width: min(calc(100% - 36px), 520px);
+  }
+
+  .partner-schedule-fields {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .partner-form-panel {
+    padding: 22px 18px;
+    border-radius: 14px;
+  }
 }
