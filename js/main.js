@@ -20,3 +20,20 @@ if (menuButton && navigation) {
 
 const year = document.querySelector('[data-current-year]');
 if (year) year.textContent = new Date().getFullYear();
+
+const interestForm = document.querySelector('#interest-form');
+if (interestForm) {
+  interestForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const status = document.querySelector('#form-status');
+    if (!interestForm.reportValidity()) return;
+
+    const name = document.querySelector('#guardian-name').value.trim();
+    const email = document.querySelector('#guardian-email').value.trim();
+    const message = document.querySelector('#guardian-message').value.trim();
+    const subject = encodeURIComponent('Thetis — Expression of Interest');
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message || 'I would like to learn more about Thetis.'}`);
+    window.location.href = `mailto:thetisoldnorth@gmail.com?subject=${subject}&body=${body}`;
+    status.textContent = 'Your email app should open with a prepared draft. Please send it to complete your inquiry.';
+  });
+}
