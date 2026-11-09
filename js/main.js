@@ -23,10 +23,6 @@ if (menuButton && navigation) {
 const year = document.querySelector('[data-current-year]');
 if (year) year.textContent = new Date().getFullYear();
 
-// Use a short, clear navigation label for the appointment section.
-const appointmentLink = document.querySelector('#primary-nav a[href="#partners"]');
-if (appointmentLink) appointmentLink.textContent = 'Appointments';
-
 // Remove the extra child-specific disclaimer from the interest section.
 const interestNote = document.querySelector('.contact .form-note');
 if (interestNote) {
