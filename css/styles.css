@@ -1,7 +1,4 @@
-/*
- * Restore the complete reference-matched stylesheet from the last full version,
- * then layer the requested font pairing on top without replacing its rules.
- */
+/* Restore the full site design system, then apply typography and page-specific refinements. */
 @import url('https://cdn.jsdelivr.net/gh/lchapata/Thetis-website@23e2b974cfa9dbde0f9114572f40340fdcbc7f92/css/styles.css');
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap');
 
@@ -10,7 +7,6 @@
   --serif: 'Sora', 'Manrope', 'Segoe UI', sans-serif;
 }
 
-/* Match the reference's bold, clean geometric headline typography. */
 .hero h1,
 .intro h2,
 .principles h2,
@@ -32,10 +28,7 @@ body,
 button,
 input,
 textarea,
-select {
-  font-family: var(--sans);
-}
-
+select,
 .primary-nav a,
 .button,
 .text-link,
@@ -52,46 +45,20 @@ select {
   font-family: var(--sans);
 }
 
-/* Keep the reference palette: navy/teal dark sections and warm cream content.
-   Gold is reserved for accents and calls to action, never full section backgrounds. */
-.principles.section-green {
-  background: #07131d;
-  color: #f8f8f5;
-}
-
-.contact.section-gold {
-  background: #07131d;
-  color: #f8f8f5;
-}
-
-.contact .eyebrow-dark {
-  color: #e2b64f;
-}
-
-.contact h2 {
-  color: #f8f8f5;
-}
-
-.contact-copy,
-.contact .form-note {
-  color: #d7e2e4;
-}
-
-.contact .interest-panel {
-  padding: clamp(28px, 3vw, 64px);
-  border-radius: 20px;
-  background: #f3f1e9;
-  color: #10251d;
-}
-
+/* The reference uses navy for the partner area and cream only for its form card.
+   Keep the dark background full bleed so it doesn't appear as a floating panel. */
 .partner-booking {
   display: grid;
-  width: min(calc(100% - 12%), 2200px);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
   grid-template-columns: minmax(0, 1fr) minmax(420px, 0.95fr);
   align-items: start;
   gap: clamp(48px, 7vw, 140px);
-  margin: 0 auto;
-  padding: clamp(72px, 8vw, 140px) 0;
+  margin: 0;
+  padding: clamp(72px, 8vw, 140px) 6%;
+  background: #07131d;
+  color: #f8f8f5;
 }
 
 .partner-booking__intro {
@@ -99,26 +66,24 @@ select {
   padding-top: 12px;
 }
 
-.partner-booking__intro .eyebrow {
-  color: var(--gold);
-}
+.partner-booking__intro .eyebrow { color: #e2b64f; }
 
 .partner-booking__intro h2 {
   margin: 0 0 24px;
-  color: var(--paper);
+  color: #f8f8f5;
   font-size: clamp(42px, 4vw, 92px);
   line-height: 0.96;
 }
 
 .partner-booking__intro h2 em {
-  color: var(--gold-light);
+  color: #edc663;
   font-style: normal;
 }
 
 .partner-booking__intro > p:not(.eyebrow) {
   max-width: 720px;
   color: rgba(251, 249, 244, 0.84);
-  font-size: clamp(17px, 1.6vw, 28px);
+  font-size: clamp(17px, 1.35vw, 28px);
   line-height: 1.7;
 }
 
@@ -134,12 +99,13 @@ select {
 
 .partner-booking__note-mark {
   display: grid;
-  place-items: center;
+  flex: 0 0 42px;
   width: 42px;
   height: 42px;
-  border: 1px solid var(--gold);
+  place-items: center;
+  border: 1px solid #e2b64f;
   border-radius: 50%;
-  color: var(--gold-light);
+  color: #edc663;
   font-family: var(--serif);
   font-weight: 700;
 }
@@ -150,11 +116,10 @@ select {
   line-height: 1.65;
 }
 
-.partner-booking__note strong {
-  color: var(--paper);
-}
+.partner-booking__note strong { color: #f8f8f5; }
 
 .partner-form-panel {
+  min-width: 0;
   padding: clamp(26px, 3vw, 58px);
   border-radius: 18px;
   background: #f3f1e9;
@@ -176,13 +141,12 @@ select {
 }
 
 .partner-field label,
-.partner-field legend {
-  font-weight: 700;
-}
+.partner-field legend { font-weight: 700; }
 
 .partner-field input,
 .partner-field select,
 .partner-field textarea {
+  box-sizing: border-box;
   width: 100%;
   min-height: 58px;
   padding: 14px 16px;
@@ -193,17 +157,12 @@ select {
   font: inherit;
 }
 
-.partner-field textarea {
-  min-height: 124px;
-  resize: vertical;
-}
-
+.partner-field textarea { min-height: 124px; resize: vertical; }
 .partner-field input::placeholder,
-.partner-field textarea::placeholder {
-  color: #7a7f7d;
-}
+.partner-field textarea::placeholder { color: #7a7f7d; }
 
 .partner-fieldset {
+  min-width: 0;
   margin: 0 0 18px;
   padding: 0;
   border: 0;
@@ -222,79 +181,58 @@ select {
 }
 
 .partner-choice input {
+  flex: 0 0 18px;
   width: 18px;
   height: 18px;
   margin: 4px 0 0;
   accent-color: #0c6460;
 }
 
-.partner-choice span {
-  display: grid;
-  gap: 2px;
-}
-
+.partner-choice span { display: grid; gap: 2px; }
 .partner-choice small,
 .partner-field small,
-.partner-form-disclosure {
-  color: #647276;
-  font-size: 13px;
-}
+.partner-form-disclosure { color: #647276; font-size: 13px; }
 
 .partner-schedule-fields {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
 }
 
-.partner-optional {
-  color: #647276;
-  font-weight: 500;
-}
-
-.partner-submit {
-  min-height: 58px;
-  border: none;
-  cursor: pointer;
-}
-
-.partner-form-status {
-  margin: 14px 0 0;
-  font-weight: 700;
-}
-
+.partner-optional { color: #647276; font-weight: 500; }
+.partner-submit { min-height: 58px; border: 0; cursor: pointer; }
+.partner-form-status { margin: 14px 0 0; font-weight: 700; }
 .partner-form-status:empty { display: none; }
+.partner-form-disclosure { margin: 16px 0 0; line-height: 1.6; }
 
-.partner-form-disclosure {
-  margin: 16px 0 0;
-  line-height: 1.6;
+/* The main contact form follows the same navy-and-cream treatment in the reference. */
+.contact.section-gold {
+  background: #07131d;
+  color: #f8f8f5;
+}
+.contact .eyebrow-dark { color: #e2b64f; }
+.contact h2 { color: #f8f8f5; }
+.contact-copy,
+.contact .form-note { color: #d7e2e4; }
+.contact .interest-panel {
+  padding: clamp(28px, 3vw, 64px);
+  border-radius: 20px;
+  background: #f3f1e9;
+  color: #10251d;
 }
 
 @media (max-width: 900px) {
   .partner-booking {
-    width: min(calc(100% - 48px), 760px);
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 32px;
-    padding: 60px 0 80px;
-  }
-
-  .partner-booking__intro {
-    padding-top: 0;
+    padding: 60px 24px 80px;
   }
 }
 
 @media (max-width: 680px) {
-  .partner-booking {
-    width: min(calc(100% - 36px), 520px);
-  }
-
-  .partner-schedule-fields {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-
+  .partner-booking { padding: 48px 18px 64px; }
+  .partner-booking__intro h2 { font-size: clamp(40px, 10vw, 58px); }
+  .partner-schedule-fields { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .partner-form-panel,
-  .contact .interest-panel {
-    padding: 22px 18px;
-    border-radius: 14px;
-  }
+  .contact .interest-panel { padding: 22px 18px; border-radius: 14px; }
 }
