@@ -81,6 +81,13 @@ const teamBios = document.querySelectorAll('.team-card p');
 if (teamBios[0]) teamBios[0].textContent = copy.teamLincoln;
 if (teamBios[1]) teamBios[1].textContent = copy.teamMarcus;
 
+// Replace the suited hero-side image with Lincoln mentoring two young players.
+const communityImage = document.querySelector('.community-image img');
+if (communityImage) {
+  communityImage.src = '5434E717-5FAA-4566-99D4-2CFF8576CC07.jpg';
+  communityImage.alt = 'Lincoln with two young players during a playful soccer activity';
+}
+
 // Interest form: prepare an email draft without storing or submitting data to a server.
 const interestForm = document.querySelector('#interest-form');
 if (interestForm) {

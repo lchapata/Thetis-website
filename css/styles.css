@@ -277,6 +277,20 @@ select,
   color: #10251d;
 }
 
+/* Soccer action is now present in the hero while keeping the navy/teal tone legible. */
+.hero-photo {
+  background-image:
+    linear-gradient(90deg, rgba(5, 17, 26, 0.4), rgba(5, 17, 26, 0.18)),
+    url('../11040735-football-3715881_1920.jpg');
+  background-size: cover;
+  background-position: center 48%;
+  opacity: 0.72;
+}
+.hero-shade {
+  background: linear-gradient(90deg, rgba(5, 17, 26, 0.72) 0%, rgba(5, 17, 26, 0.38) 58%, rgba(12, 55, 53, 0.3) 100%);
+}
+
+/* Responsive refinements */
 @media (max-width: 900px) {
   .team-grid { grid-template-columns: 1fr; }
   .team-card { grid-template-columns: minmax(140px, 0.35fr) minmax(0, 1fr); min-height: 270px; }
