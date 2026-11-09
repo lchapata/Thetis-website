@@ -25,6 +25,10 @@ Existing partners can visit `partners.html` to request a one-on-one or group pra
 
 The static page prepares an email request to `thetisoldnorth@gmail.com`; it does not check live availability or reserve a slot. The Thetis team must confirm the appointment by email. A backend calendar/booking integration would be needed to display real-time availability and prevent conflicts.
 
+## Team events
+
+The homepage lists team outings, including scheduled local sports and planned activities. RSVP links prepare an email to `thetisoldnorth@gmail.com`; they do not register attendees or reserve tickets. Events without confirmed dates are labeled as being planned.
+
 ## Preview locally
 
 Open `index.html` in a browser, or serve the project directory with any static file server. For example:
